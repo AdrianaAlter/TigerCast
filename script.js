@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     forecast.innerHTML = "";
     placeName.innerHTML = "";
     $.ajax({
-      url: "http://api.wunderground.com/api/ef2bea09facd0ef1/geolookup/conditions/q/" + input.value + ".json",
+      url: "https://api.wunderground.com/api/ef2bea09facd0ef1/geolookup/conditions/q/" + input.value + ".json",
       dataType : "jsonp",
       success : function(parsed_json) {
         compileForecast(parsed_json);

@@ -1,0 +1,103 @@
+html {
+  position: relative;
+  font-weight: normal;
+}
+
+div {
+  width: 54%;
+  background: #fef1dc;
+  padding: 1%;
+  margin: 5px;
+  border-radius: 3px;
+  display: block;
+  float: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+div:first-child {
+  height: 180px;
+}
+div:nth-child(2) {
+  width: 40%;
+  height: 540px;
+  float: right;
+}
+div:nth-child(3) {
+  margin-top: 10px;
+  height: 320px;
+}
+
+h1 {
+  font-size: 40px;
+  text-align: center;
+  color: #7F2D00;
+  letter-spacing: 3px;
+  font-family: 'Chewy', cursive;
+}
+
+h2 {
+  font-size: 28px;
+  margin-left: 5px;
+  letter-spacing: 3px;
+  font-family: 'Chewy', cursive;
+}
+
+h3 {
+  margin-left: 5px;
+  font-size: 16px;
+  font-family: 'Cherry Cream Soda', cursive;
+}
+
+input {
+  width: 80%;
+  height: 40px;
+  padding-left: 5px;
+  margin: 5px;
+  border-radius: 3px;
+  font-size: 24px;
+  outline: none;
+  color: #362313;
+  font-family: 'Cherry Cream Soda', cursive;
+}
+
+input:hover {
+  cursor: text;
+}
+
+button {
+  border-radius: 3px;
+  background: linear-gradient(#F8CB8B, #7F2D00);
+  outline: none;
+  border: none;
+  margin: 5px;
+  display: block;
+  float: right;
+  font-weight: bold;
+  font-family: 'Cherry Cream Soda', cursive;
+  color: white;
+  height: 40px;
+}
+
+button:hover {
+  background: linear-gradient(#7F2D00, #000);
+  cursor: pointer;
+}
+
+.links {
+  display: block;
+  background: white;
+  font-size: 14px;
+  height: 20px;
+  width: 40%;
+  float: right;
+  margin: auto;
+  padding-right: 5px;
+}
+
+a {
+  float: right;
+  margin-left: 10px;
+  color: #362313;
+}

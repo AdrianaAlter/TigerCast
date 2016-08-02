@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
   var getForecast = function() {
     forecast.innerHTML = "";
     $.ajax({
-      url: "http://api.wunderground.com/api/ef2bea09facd0ef1/forecast10day/q/" + input.value + ".json",
+      url: "https://api.wunderground.com/api/ef2bea09facd0ef1/forecast10day/q/" + input.value + ".json",
       dataType : "jsonp",
       success : function(parsed_json) {
         compileForecast(parsed_json);

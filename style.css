@@ -5,7 +5,7 @@ html {
 
 div {
   width: 54%;
-  background: #fef1dc;
+  background: #000;
   padding: 1%;
   margin: 5px;
   border-radius: 3px;
@@ -19,6 +19,11 @@ div {
 div:first-child {
   height: 180px;
 }
+
+div:first-child:hover {
+  background-image: url("https://s-media-cache-ak0.pinimg.com/736x/67/32/46/67324676ffbdece024fa2b15d2145c9f.jpg");
+}
+
 div:nth-child(2) {
   width: 40%;
   height: 540px;
@@ -44,9 +49,9 @@ h2 {
   font-family: 'Chewy', cursive;
 }
 
-h3 {
+h3, .day {
   margin-left: 5px;
-  font-size: 16px;
+  font-size: 20px;
   font-family: 'Cherry Cream Soda', cursive;
 }
 
@@ -95,6 +100,50 @@ button:hover {
   float: right;
   margin: auto;
   padding-right: 5px;
+}
+
+.ten-day {
+  list-style: none;
+  border: 1px solid black;
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: auto;
+  background: linear-gradient(#7F2D00, #000);
+  border-radius: 3px;
+  color: white;
+  overflow-y: scroll;
+}
+
+ul {
+  font-family: 'Chewy', cursive;
+  width: 95%;
+  padding: 5px;
+  margin: 12.5px 25px;
+  font-size: 24px;
+  display: block;
+  float: left;
+  border-bottom: 1px solid white;
+}
+
+li {
+  width: 135px;
+  text-align: center;
+  font-family: 'Cherry Cream Soda', cursive;
+  font-size: 16px;
+  display: block;
+  float: left;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.day-name {
+  border-right: 1px solid white;
+  text-align: left;
+  font-weight: bold;
+  font-family: 'Chewy', cursive;
+  font-size: 24px;
+  letter-spacing: 2px;
 }
 
 a {

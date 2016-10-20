@@ -1,14 +1,16 @@
 html {
   position: relative;
   font-weight: normal;
+  background-color: tan;
+  background-image: url("https://www.transparenttextures.com/patterns/green-fibers.png");
 }
 
 div {
-  width: 54%;
+  width: 54vw;
   background: #000;
-  padding: 1%;
-  margin: 5px;
-  border-radius: 3px;
+  padding: .25vw;
+  margin: .5vh;
+  border-radius: .3vh;
   display: block;
   float: left;
   background-repeat: no-repeat;
@@ -17,7 +19,7 @@ div {
 }
 
 div:first-child {
-  height: 180px;
+  height: 30vh;
 }
 
 div:first-child:hover {
@@ -25,43 +27,43 @@ div:first-child:hover {
 }
 
 div:nth-child(2) {
-  width: 40%;
-  height: 540px;
+  width: 40vw;
+  height: 90vh;
   float: right;
 }
 div:nth-child(3) {
-  margin-top: 10px;
-  height: 320px;
+  margin-top: .1vh;
+  height: 58.5vh;
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 6vh;
   text-align: center;
   color: #7F2D00;
-  letter-spacing: 3px;
+  letter-spacing: .3vh;
   font-family: 'Chewy', cursive;
 }
 
 h2 {
-  font-size: 28px;
-  margin-left: 5px;
-  letter-spacing: 3px;
+  font-size: 4vh;
+  text-align: center;
+  letter-spacing: .3vh;
   font-family: 'Chewy', cursive;
 }
 
 h3, .day {
-  margin-left: 5px;
-  font-size: 20px;
+  margin-left: 2vw;
+  font-size: 3vh;
   font-family: 'Cherry Cream Soda', cursive;
 }
 
 input {
-  width: 80%;
-  height: 40px;
-  padding-left: 5px;
-  margin: 5px;
-  border-radius: 3px;
-  font-size: 24px;
+  width: 45vw;
+  height: 5vh;
+  padding-left: .75vw;
+  margin: .5vw;
+  border-radius: .3vh;
+  font-size: 3.5vh;
   outline: none;
   color: #362313;
   font-family: 'Cherry Cream Soda', cursive;
@@ -72,17 +74,17 @@ input:hover {
 }
 
 button {
-  border-radius: 3px;
+  border-radius: .3vh;
   background: linear-gradient(#F8CB8B, #7F2D00);
   outline: none;
   border: none;
-  margin: 5px;
+  margin: .5vw;
   display: block;
   float: right;
   font-weight: bold;
   font-family: 'Cherry Cream Soda', cursive;
   color: white;
-  height: 40px;
+  height: 6vh;
 }
 
 button:hover {
@@ -92,62 +94,68 @@ button:hover {
 
 .links {
   display: block;
-  background: white;
-  font-size: 14px;
+  background: transparent;
+  font-size: 2.5vh;
   font-family: 'Cherry Cream Soda', cursive;
-  height: 20px;
-  width: 40%;
+  height: 3vh;
+  width: 40vw;
   float: right;
   margin: auto;
-  padding-right: 5px;
+  padding-right: .2vw;
 }
 
 .ten-day {
   list-style: none;
-  border: 1px solid black;
-  width: 100%;
-  height: 100%;
+  border: .1vh solid black;
+  width: 39vw;
+  height: 90vh;
   display: block;
   margin: auto;
   background: linear-gradient(#7F2D00, #000);
-  border-radius: 3px;
+  border-radius: .3vh;
   color: white;
-  overflow-y: scroll;
+  overflow: hidden;
 }
 
 ul {
   font-family: 'Chewy', cursive;
-  width: 95%;
-  padding: 5px;
-  margin: 12.5px 25px;
-  font-size: 24px;
+  width: 33vw;
+  padding: .5vw;
+  margin: 0 0 1vh 0;
+  font-size: 2vh;
   display: block;
   float: left;
-  border-bottom: 1px solid white;
+  border-bottom: .1vh solid white;
+}
+
+ul:first-child {
+  margin-top: 1vh;
 }
 
 li {
-  width: 135px;
+  width: 10vw;
   text-align: center;
   font-family: 'Cherry Cream Soda', cursive;
-  font-size: 16px;
+  font-size: 2vh;
   display: block;
   float: left;
-  margin: 0 10px;
+  margin: 0 2vw;
   cursor: pointer;
+  padding-top: 0;
 }
 
 .day-name {
-  border-right: 1px solid white;
+  border-right: .1vh solid white;
   text-align: left;
   font-weight: bold;
   font-family: 'Chewy', cursive;
-  font-size: 24px;
-  letter-spacing: 2px;
+  font-size: 4vh;
+  letter-spacing: .2vh;
 }
 
 a {
   float: right;
-  margin-left: 10px;
+  margin: 0 1.8vw;
+  font-size: 2.5vh;
   color: #362313;
 }

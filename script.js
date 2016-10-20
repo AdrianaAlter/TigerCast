@@ -6,18 +6,11 @@ document.addEventListener('DOMContentLoaded', function(e) {
   var tenDay = document.createElement("section");
   tenDay.className = "ten-day";
 
-  // var pic = document.createElement("img");
-  // pic.style.width = "380px";
-  // pic.style.margin = "0";
-  // pic.style.display = "block";
-
-  // pic.src = "http://res.freestockphotos.biz/pictures/7/7649-a-siberian-tiger-swimming-in-water-pv.jpg";
-  // picDiv.appendChild(pic);
   var colors = {
     "Overcast": ["#202214", "#EEE5C6", "http://imgc.allpostersimages.com/images/P-473-488-90/75/7580/SUUD300Z/posters/yuran-78-tiger-looking-and-sitting-under-dramatic-sky-with-clouds.jpg"],
     "Partly Cloudy": ["#9BAB8A", "#332F2D", "http://1.bp.blogspot.com/-ziFpr-ceWJA/UagO1Pzuh5I/AAAAAAAAE1s/Jjkkoqabwxc/s1600/Wild+Tiger.jpg"],
     "Light Rain": ["#697B79", "#F2F3F5", "http://www.earthrangers.com/content/wildwire/wet-tiger-_photo_crdit_flickr_user_Tambako-The-Jaguar.jpg"],
-    "Clear": ["#284D94", "#AEB3BB", "http://vexingpoint.files.wordpress.com/2015/03/flying-tiger-wallpapers.jpg"],
+    "Clear": ["#284D94", "#AEB3BB", "http://www.cs.loyola.edu/~raunak/images/royal-bengal.jpg"],
     "Mostly Cloudy": ["#4C433A", "#E3E0D6", "http://res.freestockphotos.biz/pictures/9/9467-close-up-of-a-tiger-pv.jpg"],
     "Thunderstorm": ["#000000", "#683136", "http://drscdn.500px.org/photo/157971893/q%3D85_w%3D280_s%3D1/5836be3ba100a3158506c52812a95466"],
     "Rain": ["#537982", "#111A1B", "https://pixabay.com/static/uploads/photo/2015/07/22/23/56/tiger-856262_960_720.jpg"],
@@ -59,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
       setPrecip(current);
       setHeatIndex(current);
       setWindChill(current);
-      // setURL(current);
     }
   };
   var compileForecast = function(parsed_json) {
@@ -69,10 +61,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     else {
       for (var i = 0; i < 10; i++) {
         var weather = parsed_json['forecast']['simpleforecast']['forecastday'][i];
-        // debugger
         setDate(weather);
-        // setHighLow(weather);
-        // setConditions(weather);
         forecast.appendChild(tenDay);
       }
     }
@@ -190,9 +179,9 @@ document.addEventListener('DOMContentLoaded', function(e) {
   };
 
   var setAppearance = function (weatherData) {
-    forecast.style.backgroundColor = colors[weatherData][0];
-    forecast.style.color = colors[weatherData][1];
-    picDiv.style.backgroundImage = "url('" + colors[weatherData][2] + "')";
+    forecast.style.backgroundColor = colors[weatherData][0] ? colors[weatherData][0] : "#000";
+    forecast.style.color = colors[weatherData][1] ? colors[weatherData][1] : "#fff";
+    picDiv.style.backgroundImage = colors[weatherData][2] ? "url('" + colors[weatherData][2] + "')" : "url('http://quicksilvernovels.com/uploads/3/4/2/4/34249805/8887048_orig.jpg')";
   };
 
   var searchButton = document.getElementsByTagName("button")[0];

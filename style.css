@@ -5,6 +5,56 @@ html {
   background-image: url("https://www.transparenttextures.com/patterns/green-fibers.png");
 }
 
+group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+@media only screen and (max-width: 500px) {
+    div {
+      width: 98% !important;
+      float: none !important;
+      margin: 1vh auto !important;
+    }
+
+    #search {
+      height: 18vh !important;
+      margin-bottom: 0 !important;
+    }
+
+    #forecast {
+      overflow-x: hidden;
+      height: 45vh !important;
+    }
+
+    h1 {
+      margin-bottom: 0 !important;
+      margin-top: 2vh !important;
+    }
+
+    a {
+      float: none !important;
+      margin: 0 5vw !important;
+      font-size: 1.5vh !important
+    }
+
+    input {
+      width: 55vw !important;
+      margin: 0.5vw 0.5vw 0.5vw 3vw;
+    }
+
+    button:nth-child(2) {
+      margin-top: 0 !important;
+    }
+
+    table {
+      font-size: 3vw !important;
+      overflow-y: scroll;
+    }
+
+}
+
 div {
   width: 54vw;
   background: #000;
@@ -18,22 +68,66 @@ div {
   background-position: center;
 }
 
-div:first-child {
+#search {
   height: 30vh;
 }
 
-div:first-child:hover {
+#search:hover {
   background-image: url("https://s-media-cache-ak0.pinimg.com/736x/67/32/46/67324676ffbdece024fa2b15d2145c9f.jpg");
 }
 
-div:nth-child(2) {
+#forecast {
   width: 40vw;
   height: 90vh;
   float: right;
+  overflow-y: scroll;
 }
-div:nth-child(3) {
+
+#pic {
   margin-top: .1vh;
   height: 58.5vh;
+}
+
+table {
+  height: 80%;
+  width: 100%;
+  padding: 0 1vw;
+  font-size: 1.7vw;
+  letter-spacing: .3vh;
+  table-layout: fixed;
+  font-family: 'Chewy', cursive;
+}
+
+th {
+  width: 100%;
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+tr, td {
+  padding: 0;
+  margin: 0;
+  border: 1px dotted white;
+}
+
+tr:last-child td:last-child {
+  border: none;
+  padding: 0;
+}
+
+.ten-day tr {
+  width: 100%;
+  height: 8%;
+}
+
+.ten-day td {
+  padding: 0 2vw;
+  cursor: pointer;
+}
+
+.data {
+  font-family: "Cherry Cream Soda", cursive;
 }
 
 h1 {
@@ -46,6 +140,7 @@ h1 {
 
 h2 {
   font-size: 4vh;
+  color: #7F2D00;
   text-align: center;
   letter-spacing: .3vh;
   font-family: 'Chewy', cursive;
@@ -78,18 +173,27 @@ button {
   background: linear-gradient(#F8CB8B, #7F2D00);
   outline: none;
   border: none;
-  margin: .5vw;
+  margin: 0;
   display: block;
-  float: right;
   font-weight: bold;
   font-family: 'Cherry Cream Soda', cursive;
   color: white;
   height: 6vh;
+  font-size: 2vh;
 }
 
 button:hover {
   background: linear-gradient(#7F2D00, #000);
   cursor: pointer;
+}
+
+#search button {
+  float: right;
+  margin: .5vw
+}
+
+#pic {
+  background-position: center;
 }
 
 .links {
@@ -107,14 +211,15 @@ button:hover {
 .ten-day {
   list-style: none;
   border: .1vh solid black;
-  width: 39vw;
-  height: 90vh;
+  width: 95%;
+  height: 98%;
+  position: relative;
   display: block;
   margin: auto;
   background: linear-gradient(#7F2D00, #000);
   border-radius: .3vh;
   color: white;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 ul {

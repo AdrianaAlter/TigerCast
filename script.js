@@ -1,176 +1,143 @@
 document.addEventListener('DOMContentLoaded', function(e) {
-  var forecast = document.getElementsByTagName("div")[1];
-  var input = document.getElementsByTagName("input")[0];
-  var placeName = document.getElementsByClassName("placeName")[0];
-  var picDiv = document.getElementsByClassName("pic")[0];
-  var tenDay = document.createElement("section");
-  tenDay.className = "ten-day";
+  var forecast = $("#forecast")[0];
+  var input = $("input")[0];
+  var placeName = $(".placeName")[0];
+  var picDiv = $("#pic")[0];
+  var view = "basic";
 
-  var colors = {
-    "Overcast": ["#202214", "#EEE5C6", "http://imgc.allpostersimages.com/images/P-473-488-90/75/7580/SUUD300Z/posters/yuran-78-tiger-looking-and-sitting-under-dramatic-sky-with-clouds.jpg"],
-    "Partly Cloudy": ["#9BAB8A", "#332F2D", "http://1.bp.blogspot.com/-ziFpr-ceWJA/UagO1Pzuh5I/AAAAAAAAE1s/Jjkkoqabwxc/s1600/Wild+Tiger.jpg"],
-    "Light Rain": ["#697B79", "#F2F3F5", "http://www.earthrangers.com/content/wildwire/wet-tiger-_photo_crdit_flickr_user_Tambako-The-Jaguar.jpg"],
-    "Clear": ["#284D94", "#AEB3BB", "http://www.cs.loyola.edu/~raunak/images/royal-bengal.jpg"],
-    "Mostly Cloudy": ["#4C433A", "#E3E0D6", "http://res.freestockphotos.biz/pictures/9/9467-close-up-of-a-tiger-pv.jpg"],
-    "Thunderstorm": ["#000000", "#683136", "http://drscdn.500px.org/photo/157971893/q%3D85_w%3D280_s%3D1/5836be3ba100a3158506c52812a95466"],
-    "Rain": ["#537982", "#111A1B", "https://pixabay.com/static/uploads/photo/2015/07/22/23/56/tiger-856262_960_720.jpg"],
-    "Chance of a Thunderstorm": ["#C5BFBF", "#583E2F", "http://img08.deviantart.net/13a9/i/2011/213/b/7/tiger_stock_2_by_sikaris_stock-d42dbyo.jpg"]
+  LABELS = {
+    "Current Temperature:": "temp_f",
+    "Feels Like:": "feelslike_f",
+    "Current Conditions:": "weather",
+    "Wind:": "wind_string",
+    "Precipitation:": "precip_today_in",
+    "Heat Index:": "heat_index_f",
+    "Windchill:": "windchill_f"
   };
+
+  COLORS = {
+    "Overcast": ["#202214", "#EEE5C6", "./images/overcast.jpg"],
+    "Partly Cloudy": ["#9BAB8A", "#332F2D", "./images/partly_cloudy.jpg"],
+    "Chance of Rain": ["#E2FFFF", "#022F87", "./images/chance_of_rain.jpg"],
+    "Snow": ["#fff", "#1a1a1a", "./images/snow.jpg"],
+    "Chance of Snow": ["#aaa", "#010522", "./images/chance_of_snow.jpg"],
+    "Light Rain": ["#697B79", "#F2F3F5", "./images/light_rain.jpg"],
+    "Clear": ["#284D94", "#AEB3BB", "./images/clear.jpg"],
+    "Mostly Cloudy": ["#4C433A", "#E3E0D6", "./images/mostly_cloudy.jpg"],
+    "Thunderstorm": ["#000000", "#683136", "./images/thunderstorm.jpg"],
+    "Rain": ["#537982", "#111A1B", "./images/rain.jpg"],
+    "Chance of a Thunderstorm": ["#C5BFBF", "#583E2F", "./images/chance_of_thunderstorm.jpg"]
+  };
+
   var getWeather = function() {
     forecast.innerHTML = "";
     $.ajax({
       url: "https://api.wunderground.com/api/ef2bea09facd0ef1/geolookup/conditions/q/" + input.value + ".json",
       dataType : "jsonp",
       success : function(parsed_json) {
+        view = "basic";
         compileCurrent(parsed_json);
-        appendButton();
       }
     });
   };
+
   var getForecast = function() {
     forecast.innerHTML = "";
     $.ajax({
       url: "https://api.wunderground.com/api/ef2bea09facd0ef1/forecast10day/q/" + input.value + ".json",
       dataType : "jsonp",
       success : function(parsed_json) {
+        view = "tenday";
         compileForecast(parsed_json);
       }
     });
   };
 
   var compileCurrent = function(parsed_json) {
-    if (parsed_json['response']['error']) {
-        setError(parsed_json['response']['error']['description']);
+    if (parsed_json.response.error) {
+        setError(parsed_json.response.error.description);
+        return;
     }
     else {
-      var current = parsed_json['current_observation']
-      setLocation(parsed_json['location']);
-      setTemp(current);
-      setFeel(current);
-      setWeather(current);
-      setWind(current);
-      setPrecip(current);
-      setHeatIndex(current);
-      setWindChill(current);
+      var table = document.createElement("table");
+      table.className = "group";
+      forecast.appendChild(table);
+      var current = parsed_json.current_observation;
+      setLocation(parsed_json.location);
+      Object.keys(LABELS).forEach(function(label){
+        makeRow(label, current[LABELS[label]]);
+      });
+      setAppearance(current.weather);
+      appendButton();
     }
   };
+
   var compileForecast = function(parsed_json) {
-    if (parsed_json['response']['error']) {
-        setError(parsed_json['response']['error']['description']);
+    if (parsed_json.response.error) {
+        setError(parsed_json.response.error.description);
+        return;
     }
     else {
+      var table = document.createElement("table");
+      table.className = "ten-day group";
+      forecast.appendChild(table);
       for (var i = 0; i < 10; i++) {
-        var weather = parsed_json['forecast']['simpleforecast']['forecastday'][i];
+        var weather = parsed_json.forecast.simpleforecast.forecastday[i];
         setDate(weather);
-        forecast.appendChild(tenDay);
       }
+      appendButton();
     }
   };
 
   var setError = function (message) {
-    var error = document.createElement("h2");
+    var error = document.createElement("h1");
     error.innerHTML = message;
     forecast.appendChild(error);
   };
 
   var setLocation = function (json) {
-    var city = json['city'];
-    var state = json['state'];
-    var country = json['country'];
-    var zip = json['zip'];
-    var locationData = [city, state, country].join(", ") + " (" + zip + ")";
+    var locationData = [json.city,json.state, json.country].join(", ") + " (" + json.zip + ")";
     var location = document.createElement("h2");
     location.innerHTML = locationData;
-    forecast.appendChild(location);
+    $("#forecast").prepend(location);
   };
 
-  var setTemp = function (current) {
-    var tempData = current['temp_f'];
-    var temp = document.createElement("h3");
-    temp.innerHTML = "Current Temperature: " + tempData;
-    forecast.appendChild(temp);
+  var makeRow = function (label, data) {
+    var newRow = document.createElement("tr");
+    newRow.className = "group";
+    var labelTd = document.createElement("td");
+    labelTd.innerHTML = label;
+    var dataTd = document.createElement("td");
+    dataTd.className = "data";
+    dataTd.innerHTML = data;
+    newRow.appendChild(labelTd);
+    newRow.appendChild(dataTd);
+    $("table")[0].appendChild(newRow);
   };
-
-  var setFeel = function (current) {
-    var feelData = current['feelslike_f'];
-    var feel = document.createElement("h3");
-    feel.innerHTML = "Feels Like: " + feelData;
-    forecast.appendChild(feel);
-  };
-
-  var setWeather = function(current) {
-    var weatherData = current['weather'];
-    setAppearance(weatherData);
-    var weather = document.createElement("h3");
-    weather.innerHTML = "Current Conditions: " + weatherData;
-    forecast.appendChild(weather);
-  };
-
-  var setWind = function(current) {
-    var windData = current['wind_string'];
-    var wind = document.createElement("h3");
-    wind.innerHTML = "Wind: " + windData;
-    forecast.appendChild(wind);
-  };
-
-  var setPrecip = function(weather) {
-    var precipData = weather['precip_today_in'];
-    var precip = document.createElement("h3");
-    precip.innerHTML = "Precipitation: " + precipData + " inches";
-    forecast.appendChild(precip);
-  };
-
-  var setHeatIndex = function(weather) {
-    var heatIndexData = weather['heat_index_f'];
-    var heatIndex = document.createElement("h3");
-    heatIndex.innerHTML = "Heat Index: " + heatIndexData;
-    forecast.appendChild(heatIndex);
-  };
-
-  var setWindChill = function(weather) {
-    var windChillData = weather['windchill_f'];
-    var windChill = document.createElement("h3");
-    windChill.innerHTML = "Windchill: " + windChillData;
-    forecast.appendChild(windChill);
-  };
-
-  var setURL = function(weather) {
-    var urlData = weather['forecast_url'];
-    var url = document.createElement("h3");
-    var link = document.createElement("a");
-    link.href = urlData;
-    link.innerHTML = urlData;
-    url.innerHTML = "Full forecast at " + link;
-    forecast.appendChild(url);
-  }
 
   var setDate = function (weather) {
-    var day = weather['date']['weekday'];
-    var date = document.createElement('ul');
-    date.className = "day";
-    var dayName = document.createElement('li');
-    dayName.innerHTML = day;
-    dayName.className = "day-name";
-    date.appendChild(dayName);
-    setHighLow(weather, date);
-    setConditions(weather, date);
-    tenDay.appendChild(date);
+    var dayRow = document.createElement('tr');
+    var dayName = document.createElement('td');
+    dayName.className = "day";
+    dayName.innerHTML = weather.date.weekday;
+    dayRow.appendChild(dayName);
+    setHighLow(weather, dayRow);
+    setConditions(weather, dayRow);
+    $("table")[0].appendChild(dayRow);
   };
 
-  var setHighLow = function (weather, date) {
-    var high = weather['high']['fahrenheit'];
-    var low = weather['low']['fahrenheit'];
-    var highLow = document.createElement('li');
-    highLow.innerHTML = low + "-" + high;
-    date.appendChild(highLow);
+  var setHighLow = function (weather, row) {
+    var highLow = document.createElement('td');
+    highLow.innerHTML = weather.low.fahrenheit + "-" + weather.high.fahrenheit;
+    row.appendChild(highLow);
   };
 
-  var setConditions = function(weather, date) {
-    var conditionData = weather['conditions'];
-    var condition = document.createElement('li');
+  var setConditions = function(weather, row) {
+    var conditionData = weather.conditions;
+    var condition = document.createElement('td');
     condition.innerHTML = conditionData;
-    date.appendChild(condition);
-    date.addEventListener("click", setFromClick);
+    row.appendChild(condition);
+    row.addEventListener("click", setFromClick);
   };
 
   var setFromClick = function (e) {
@@ -179,19 +146,23 @@ document.addEventListener('DOMContentLoaded', function(e) {
   };
 
   var setAppearance = function (weatherData) {
-    forecast.style.backgroundColor = colors[weatherData][0] ? colors[weatherData][0] : "#000";
-    forecast.style.color = colors[weatherData][1] ? colors[weatherData][1] : "#fff";
-    picDiv.style.backgroundImage = colors[weatherData][2] ? "url('" + colors[weatherData][2] + "')" : "url('http://quicksilvernovels.com/uploads/3/4/2/4/34249805/8887048_orig.jpg')";
+    forecast.style.backgroundColor = COLORS[weatherData] ? COLORS[weatherData][0] : "#000";
+    forecast.style.color = COLORS[weatherData] ? COLORS[weatherData][1] : "#fff";
+    picDiv.style.backgroundImage = COLORS[weatherData] ? "url('" + COLORS[weatherData][2] + "')" : "url('./images/default.jpg')";
   };
 
-  var searchButton = document.getElementsByTagName("button")[0];
+  var searchButton = $("button")[0];
   searchButton.addEventListener("click", getWeather);
 
   var appendButton = function () {
+    var forecastRow = document.createElement("tr");
+    var forecastCell = document.createElement("td");
     var forecastButton = document.createElement("button");
-    forecastButton.innerHTML = "Full Forecast";
-    forecastButton.addEventListener("click", getForecast);
-    forecast.appendChild(forecastButton);
+    forecastButton.innerHTML = view == "basic" ? "Full Forecast" : "Current Forecast";
+    view == "basic" ? forecastButton.addEventListener("click", getForecast) : forecastButton.addEventListener("click", getWeather);
+    forecastCell.appendChild(forecastButton);
+    forecastRow.appendChild(forecastCell);
+    $("table")[0].appendChild(forecastRow);
   };
 
 });

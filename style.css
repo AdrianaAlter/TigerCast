@@ -28,9 +28,14 @@ group:after {
       height: 45vh !important;
     }
 
+    #search button {
+      margin: .5vw 4vw .5vw 4vw;
+    }
+
     h1 {
       margin-bottom: 0 !important;
       margin-top: 2vh !important;
+      font-size: 10vw !important;
     }
 
     a {

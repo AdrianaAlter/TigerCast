@@ -50,7 +50,7 @@ group:after {
     input {
       position: absolute !important;
       bottom: 2vh !important;
-      width: 55vw !important;
+      width: 50vw !important;
       margin: 0.5vw 0.5vw 0.5vw 3vw !important;
     }
 

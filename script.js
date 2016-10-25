@@ -87,7 +87,9 @@ document.addEventListener('DOMContentLoaded', function(e) {
       forecast.appendChild(table);
       for (var i = 0; i < 10; i++) {
         var weather = parsed_json.forecast.simpleforecast.forecastday[i];
-        setDate(weather);
+        if (weather !== undefined) {
+          setDate(weather);
+        }
       }
       appendButton();
     }

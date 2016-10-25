@@ -53,6 +53,10 @@ document.addEventListener('DOMContentLoaded', function(e) {
     });
   };
 
+  input.addEventListener('click', function(){
+    input.value = "";
+  });
+
   var compileCurrent = function(parsed_json) {
     if (parsed_json.response.error) {
         setError(parsed_json.response.error.description);

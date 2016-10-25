@@ -11,7 +11,7 @@ group:after {
   clear: both;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 860px) {
     div {
       width: 98% !important;
       float: none !important;
@@ -19,7 +19,7 @@ group:after {
     }
 
     #search {
-      height: 18vh !important;
+      height: 20vh !important;
       margin-bottom: 0 !important;
     }
 
@@ -29,24 +29,29 @@ group:after {
     }
 
     #search button {
+      position: absolute !important;
+      bottom: 2vh !important;
+      right: 2vw !important;
       margin: .5vw 4vw .5vw 4vw;
     }
 
     h1 {
-      margin-bottom: 0 !important;
-      margin-top: 2vh !important;
-      font-size: 10vw !important;
+      margin-bottom: 1vh !important;
+      margin-top: 1vh !important;
+      font-size: 6vh !important;
     }
 
     a {
       float: none !important;
-      margin: 0 5vw !important;
-      font-size: 1.5vh !important
+      margin: 0 3.9vw 0 0 !important;
+      font-size: 3.5vw !important
     }
 
     input {
+      position: absolute !important;
+      bottom: 2vh !important;
       width: 55vw !important;
-      margin: 0.5vw 0.5vw 0.5vw 3vw;
+      margin: 0.5vw 0.5vw 0.5vw 3vw !important;
     }
 
     button:nth-child(2) {
@@ -75,10 +80,18 @@ div {
 
 #search {
   height: 30vh;
+  position: relative;
 }
 
 #search:hover {
   background-image: url("https://s-media-cache-ak0.pinimg.com/736x/67/32/46/67324676ffbdece024fa2b15d2145c9f.jpg");
+}
+
+#search button {
+  height: 7vh;
+  float: right;
+  margin-top: .5vh;
+  margin-right: 1vw;
 }
 
 #forecast {
@@ -158,11 +171,12 @@ h3, .day {
 }
 
 input {
-  width: 45vw;
+  width: 40vw;
   height: 5vh;
   padding-left: .75vw;
   margin: .5vw;
   border-radius: .3vh;
+  border: .5vh inset;
   font-size: 3.5vh;
   outline: none;
   color: #362313;
@@ -183,8 +197,8 @@ button {
   font-weight: bold;
   font-family: 'Cherry Cream Soda', cursive;
   color: white;
-  height: 6vh;
-  font-size: 2vh;
+  height: 8vh;
+  font-size: 2.5vh;
 }
 
 button:hover {
@@ -192,25 +206,17 @@ button:hover {
   cursor: pointer;
 }
 
-#search button {
-  float: right;
-  margin: .5vw
-}
-
 #pic {
   background-position: center;
 }
 
-.links {
+#links {
   display: block;
   background: transparent;
   font-size: 2.5vh;
   font-family: 'Cherry Cream Soda', cursive;
   height: 3vh;
-  width: 40vw;
-  float: right;
-  margin: auto;
-  padding-right: .2vw;
+  width: 97.7vw;
 }
 
 .ten-day {
@@ -264,8 +270,8 @@ li {
 }
 
 a {
-  float: right;
-  margin: 0 1.8vw;
+  float: left;
+  margin: 0 3vw 0 0;
   font-size: 2.5vh;
   color: #362313;
 }

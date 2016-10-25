@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     "Overcast": ["#202214", "#EEE5C6", "./images/overcast.jpg"],
     "Partly Cloudy": ["#9BAB8A", "#332F2D", "./images/partly_cloudy.jpg"],
     "Chance of Rain": ["#E2FFFF", "#022F87", "./images/chance_of_rain.jpg"],
+    "Rain Showers": ["#323F11", "#2E252A", "./images/rain_showers.jpg"],
     "Snow": ["#fff", "#1a1a1a", "./images/snow.jpg"],
     "Chance of Snow": ["#aaa", "#010522", "./images/chance_of_snow.jpg"],
     "Light Rain": ["#697B79", "#F2F3F5", "./images/light_rain.jpg"],

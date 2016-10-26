@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
   COLORS = {
     "Overcast": ["#202214", "#EEE5C6", "./images/overcast.jpg"],
     "Partly Cloudy": ["#9BAB8A", "#332F2D", "./images/partly_cloudy.jpg"],
+    "Scattered Clouds": ["#486972", "#1F1C13", "./images/scattered_clouds.jpg"],
     "Chance of Rain": ["#E2FFFF", "#022F87", "./images/chance_of_rain.jpg"],
     "Rain Showers": ["#323F11", "#2E252A", "./images/rain_showers.jpg"],
     "Snow": ["#fff", "#1a1a1a", "./images/snow.jpg"],
@@ -153,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
   };
 
   var setAppearance = function (weatherData) {
-    forecast.style.backgroundColor = COLORS[weatherData] ? COLORS[weatherData][0] : "#000";
+    forecast.style.background = COLORS[weatherData] ? COLORS[weatherData][0] : "#000";
     forecast.style.color = COLORS[weatherData] ? COLORS[weatherData][1] : "#fff";
     picDiv.style.backgroundImage = COLORS[weatherData] ? "url('" + COLORS[weatherData][2] + "')" : "url('./images/default.jpg')";
   };
